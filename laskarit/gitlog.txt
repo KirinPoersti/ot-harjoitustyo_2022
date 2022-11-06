@@ -1,0 +1,115 @@
+LEGOY@DESKTOP-MECG009 MINGW64 ~/ot_viikko1/tiedostoja (master)
+$ git log --stat|cat
+commit 43d5ceea790c3f5da5e41806012ac34bf4092872
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 02:10:50 2022 +0200
+
+    file1 poistettu file2 nimen vaihto
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit c522e05f4b2526d842ff7219f9cecb0023569ef0
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 02:02:54 2022 +0200
+
+    tiedostot luotu
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 62b1366fa33b8fc5688cfeabd80dbf1251b21f43
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:55:55 2022 +0200
+
+    tekstejä lisätty ja poistettu
+
+ eka.txt    | 1 +
+ kolmas.txt | 3 ++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+commit fba12fc6770128936e162f394f5bf94154c9191e
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:47:17 2022 +0200
+
+    toinen poistettu, tiedoston nimen vaihto
+
+ tiedosto.txt => eka.txt | 0
+ toinen.txt              | 1 -
+ 2 files changed, 1 deletion(-)
+
+commit b09780c30b38fd9791035291658b729b725a9c81
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:35:39 2022 +0200
+
+    Valo lisätty, valo oli hyvä
+
+ tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5b0992230d072e4a3063b81d03aba7fbacf2ad07
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:34:03 2022 +0200
+
+    Maa ja taivas luotu
+
+ tiedosto.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 7aeebfd24695db03649f14ada9abc3ce2c54f885
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:25:57 2022 +0200
+
+    ok. written
+
+ stuff/ok.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit e7acef4b88998e3e401da143dae96ec3637ec43d
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:24:27 2022 +0200
+
+    muutokset tehty ja tallennettu
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit a9d58a5ccc33d2c1f62917267026b764b2be442e
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:22:08 2022 +0200
+
+    ready to commit
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2662ba1dc17c84b8567dd510eb2c25b8ea3a954d
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:19:34 2022 +0200
+
+    kirjoitettu 'hello world'
+
+ tiedosto.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 29eac814cc897daad74fd2347b976c4e69ea11de
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:18:22 2022 +0200
+
+    muutos ja lisäys
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c5c6fae95802df584d24402616fbaf63f894aab3
+Author: Kirin <kirin.porsti@helsinki.fi>
+Date:   Sun Nov 6 01:15:16 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
