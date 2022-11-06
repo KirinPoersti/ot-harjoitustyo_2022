@@ -4,10 +4,10 @@
 
 *Today is a great day!*
 
-_Be possitive~_
+**_Be possitive~_**
 
 
-[gitlog.txt](ot-harjoitustyo/laskarit/viikko1/gitlog.txt)
+[gitlog.txt](laskarit/viikko1/gitlog.txt)
 
-[komentorivi.txt](ot-harjoitustyo/laskarit/viikko1/komentorivi.txt)
+[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
 
