@@ -34,14 +34,20 @@ class TestMaksukortti(unittest.TestCase):
 
         self.assertEqual(str(self.kortti), "Kortilla on rahaa 3.00 euroa")
 
-    def test_rahan_ottaminen_toimii3(self):
+    def test_rahan_ottaminen_toimii3_riittävä(self):
         #Metodi palauttaa True, jos rahat riittivät ja muuten False
         self.kortti = Maksukortti(300)
-        saldo = self.kortti
-        self.kortti.ota_rahaa(400)
-        if saldo == self.kortti:
-            return False
-        else:
-            return True
+        vastaus = Maksukortti.ota_rahaa(self.kortti,200)
+
+        self.assertEqual(str(vastaus), "True")
+    
+    def test_rahan_ottaminen_toimii3_ei_riittävä(self):
+        #Metodi palauttaa False, jos rahat eivät riittää
+        self.kortti = Maksukortti(300)
+        vastaus = Maksukortti.ota_rahaa(self.kortti,400)
+
+        self.assertEqual(str(vastaus), "False")
+    
+
     
     
