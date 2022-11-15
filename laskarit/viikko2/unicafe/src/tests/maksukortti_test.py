@@ -1,4 +1,5 @@
 import unittest
+
 from maksukortti import Maksukortti
 
 class TestMaksukortti(unittest.TestCase):
@@ -42,3 +43,5 @@ class TestMaksukortti(unittest.TestCase):
             return False
         else:
             return True
+    
+    
