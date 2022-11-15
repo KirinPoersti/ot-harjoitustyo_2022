@@ -10,100 +10,189 @@ class TestKassapaate(unittest.TestCase):
         self.edulliset = 0
         self.maukkaat = 0
 
-    def test_tilanteet_alussa(self):
+    def test_tilanteet_alussa_kassa(self):
         #alku-tilanteen tarkastus
         self.assertEqual(str(self.kassassa_rahaa), '100000')
+    
+    def test_tilanteet_alussa_edulliset(self):
+        #alku-tilanteen tarkastus
         self.assertEqual(str(self.edulliset), '0')
+        
+    def test_tilanteet_alussa_maukkaat(self):
+        #alku-tilanteen tarkastus
         self.assertEqual(str(self.maukkaat), '0')
    
-    def test_käteisosto_edulliset_yli(self):
+    def test_käteisosto_edulliset_yli_vaihtoraha(self):
         #maksaa enemmän kuin edullisen lounaan hintaa
         vastaus = Kassapaate.syo_edullisesti_kateisella(self, 250)
-        edulliset = self.edulliset
-        kassa = self.kassassa_rahaa
         
         self.assertEqual(str(vastaus), '10')
+    
+    def test_käteisosto_edulliset_yli_myynti(self):
+        #maksaa enemmän kuin edullisen lounaan hintaa
+        Kassapaate.syo_edullisesti_kateisella(self, 250)
+        edulliset = self.edulliset
+        
         self.assertEqual(str(edulliset), '1')
+    
+    def test_käteisosto_edulliset_yli_kassa(self):
+        #maksaa enemmän kuin edullisen lounaan hintaa
+        Kassapaate.syo_edullisesti_kateisella(self, 250)
+        kassa = self.kassassa_rahaa
+        
         self.assertEqual(str(kassa), '100240')
     
-    def test_käteisosto_edulliset_riitävä(self):
+    def test_käteisosto_edulliset_riitävä_vaihtoraha(self):
         #maksaa saman verran kuin edullisen lounaan hintaa
         vastaus = Kassapaate.syo_edullisesti_kateisella(self, 240)
-        edulliset = self.edulliset
-        kassa = self.kassassa_rahaa
         
         self.assertEqual(str(vastaus), '0')
+
+    def test_käteisosto_edulliset_riitävä_myynti(self):
+        #maksaa saman verran kuin edullisen lounaan hintaa
+        Kassapaate.syo_edullisesti_kateisella(self, 240)
+        edulliset = self.edulliset
+        
         self.assertEqual(str(edulliset), '1')
+    
+    def test_käteisosto_edulliset_riitävä_kassa(self):
+        #maksaa saman verran kuin edullisen lounaan hintaa
+        Kassapaate.syo_edullisesti_kateisella(self, 240)
+        kassa = self.kassassa_rahaa
+
         self.assertEqual(str(kassa), '100240')
 
-    def test_käteisosto_edulliset_ei_riitävä(self):
+    def test_käteisosto_edulliset_ei_riitävä_vaihtoraha(self):
         #maksaa vähemmän kuin edullisen lounaan hintaa
         vastaus = Kassapaate.syo_edullisesti_kateisella(self, 230)
-        edulliset = self.edulliset
-        kassa = self.kassassa_rahaa
-        
+
         self.assertEqual(str(vastaus), '230')
+
+    def test_käteisosto_edulliset_ei_riitävä_myynti(self):
+        #maksaa vähemmän kuin edullisen lounaan hintaa
+        Kassapaate.syo_edullisesti_kateisella(self, 230)
+        edulliset = self.edulliset
+
         self.assertEqual(str(edulliset), '0')
+
+    def test_käteisosto_edulliset_ei_riitävä_kassa(self):
+        #maksaa vähemmän kuin edullisen lounaan hintaa
+        Kassapaate.syo_edullisesti_kateisella(self, 230)
+        kassa = self.kassassa_rahaa
+    
         self.assertEqual(str(kassa), '100000')
 
-    def test_korttiosto_edulliset_riitävä(self):
+    def test_korttiosto_edulliset_riitäv_veloitus(self):
         #kortilla on tarpeeksi rahaa, veloitetaan summa kortilta ja palautetaan True
+        vastaus = Kassapaate.syo_edullisesti_kortilla(self, kortti(1000))
+ 
+        self.assertEqual(str(vastaus), 'True')
+    
+    def test_korttiosto_edulliset_riitäv_myynti(self):
         #kortilla on tarpeeksi rahaa, myytyjen lounaiden määrä kasvaa
-        #kassassa oleva rahamäärä ei muutu kortilla ostettaessa
         vastaus = Kassapaate.syo_edullisesti_kortilla(self, kortti(1000))
         edulliset = self.edulliset
-        kassa = self.kassassa_rahaa
-        
+
         self.assertEqual(str(vastaus), 'True')
         self.assertEqual(str(edulliset), '1')
+    
+    def test_korttiosto_edulliset_riitäv_kassa(self):
+        #kassassa oleva rahamäärä ei muutu kortilla ostettaessa
+        Kassapaate.syo_edullisesti_kortilla(self, kortti(1000))
+        kassa = self.kassassa_rahaa
+
         self.assertEqual(str(kassa), '100000')
     
-    def test_korttiosto_edulliset_ei_riitävä(self):
+    def test_korttiosto_edulliset_ei_riitävä_veloitus(self):
         #kortilla ei ole tarpeeksi rahaa, kortin rahamäärä ei muutu
-        #myytyjen lounaiden määrä muuttumaton ja palautetaan False
-        #kassassa oleva rahamäärä ei muutu kortilla ostettaessa
-        vastaus = Kassapaate.syo_edullisesti_kortilla(self, kortti(230))
-        edulliset = self.edulliset
+        Kassapaate.syo_edullisesti_kortilla(self, kortti(230))
         saldo = kortti(230)
-        kassa = self.kassassa_rahaa
-        
         self.assertEqual(str(saldo), 'Kortilla on rahaa 2.30 euroa')
-        self.assertEqual(str(vastaus), 'False')
+    
+    def test_korttiosto_edulliset_ei_riitävä_myynti(self):
+        #myytyjen lounaiden määrä muuttumaton
+        Kassapaate.syo_edullisesti_kortilla(self, kortti(230))
+        edulliset = self.edulliset
+
         self.assertEqual(str(edulliset), '0')
+
+    def test_korttiosto_edulliset_ei_riitävä_palautus(self):
+        #palautetaan False
+        vastaus = Kassapaate.syo_edullisesti_kortilla(self, kortti(230))
+
+        self.assertEqual(str(vastaus), 'False')
+    
+    def test_korttiosto_edulliset_ei_riitävä_kassa(self):
+        #kassassa oleva rahamäärä ei muutu kortilla ostettaessa
+        Kassapaate.syo_edullisesti_kortilla(self, kortti(230))
+        kassa = self.kassassa_rahaa
+
         self.assertEqual(str(kassa), '100000')
 
-    def test_korttiosto_maukkaat_riitävä(self):
-        #kortilla on tarpeeksi rahaa, veloitetaan summa kortilta ja palautetaan True
+    def test_korttiosto_maukkaat_riitävä_veloitus(self):
+        #kortilla on tarpeeksi rahaa, veloitetaan summa kortilta
+        Kassapaate.syo_maukkaasti_kortilla(self, kortti(1000))
+        saldo = kortti(1000-400)
+
+        self.assertEqual(str(saldo), 'Kortilla on rahaa 6.00 euroa')
+
+    def test_korttiosto_maukkaat_riitävä_myynti(self):
         #kortilla on tarpeeksi rahaa, myytyjen lounaiden määrä kasvaa
-        #kassassa oleva rahamäärä ei muutu kortilla ostettaessa
-        vastaus = Kassapaate.syo_maukkaasti_kortilla(self, kortti(1000))
+        Kassapaate.syo_maukkaasti_kortilla(self, kortti(1000))
         maukkaat = self.maukkaat
-        kassa = self.kassassa_rahaa
+
+        self.assertEqual(str(maukkaat), '1')
+    
+    def test_korttiosto_maukkaat_riitävä_palautus(self):
+        #palautetaan True
+        vastaus = Kassapaate.syo_maukkaasti_kortilla(self, kortti(1000))
         
         self.assertEqual(str(vastaus), 'True')
-        self.assertEqual(str(maukkaat), '1')
-        self.assertEqual(str(kassa), '100000')
     
-    def test_korttiosto_edulliset_ei_riitävä(self):
-        #kortilla ei ole tarpeeksi rahaa, kortin rahamäärä ei muutu
-        #myytyjen lounaiden määrä muuttumaton ja palautetaan False
+    def test_korttiosto_maukkaat_riitävä_kassa(self):
         #kassassa oleva rahamäärä ei muutu kortilla ostettaessa
-        vastaus = Kassapaate.syo_maukkaasti_kortilla(self, kortti(300))
-        maukkaat = self.maukkaat
-        saldo = kortti(300)
+        Kassapaate.syo_maukkaasti_kortilla(self, kortti(1000))
         kassa = self.kassassa_rahaa
         
-        self.assertEqual(str(saldo), 'Kortilla on rahaa 3.00 euroa')
-        self.assertEqual(str(vastaus), 'False')
-        self.assertEqual(str(maukkaat), '0')
         self.assertEqual(str(kassa), '100000')
     
-    def test_kortille_lataaminen(self):
+    def test_korttiosto_edulliset_ei_riitävä_veloitus(self):
+        #kortilla ei ole tarpeeksi rahaa, kortin rahamäärä ei muutu
+        Kassapaate.syo_maukkaasti_kortilla(self, kortti(300))
+        saldo = kortti(300)
+
+        self.assertEqual(str(saldo), 'Kortilla on rahaa 3.00 euroa')
+    
+    def test_korttiosto_edulliset_ei_riitävä_myynti(self):
+        #myytyjen lounaiden määrä muuttumaton
+        Kassapaate.syo_maukkaasti_kortilla(self, kortti(300))
+        maukkaat = self.maukkaat
+
+        self.assertEqual(str(maukkaat), '0')
+
+    def test_korttiosto_edulliset_ei_riitävä_palautus(self):
+        #palautetaan False
+        vastaus = Kassapaate.syo_maukkaasti_kortilla(self, kortti(300))
+
+        self.assertEqual(str(vastaus), 'False')
+    
+    def test_korttiosto_edulliset_ei_riitävä_kassa(self):
+        #kassassa oleva rahamäärä ei muutu kortilla ostettaessa
+        Kassapaate.syo_maukkaasti_kortilla(self, kortti(300))
+        kassa = self.kassassa_rahaa
+
+        self.assertEqual(str(kassa), '100000')
+    
+    def test_kortille_lataaminen_saldo(self):
         #kortille rahaa ladattaessa kortin saldo muuttuu
-        #kassassa oleva rahamäärä kasvaa ladatulla summalla
         Kassapaate.lataa_rahaa_kortille(self, kortti(0), 400)
         saldo = kortti(400)
-        kassa = self.kassassa_rahaa
         
         self.assertEqual(str(saldo), 'Kortilla on rahaa 4.00 euroa')
+    
+    def test_kortille_lataaminen_kassa(self):
+        #kassassa oleva rahamäärä kasvaa ladatulla summalla
+        Kassapaate.lataa_rahaa_kortille(self, kortti(0), 400)
+        kassa = self.kassassa_rahaa
+
         self.assertEqual(str(kassa), '100400')
