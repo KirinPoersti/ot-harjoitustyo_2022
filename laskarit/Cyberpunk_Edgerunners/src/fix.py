@@ -85,8 +85,12 @@ class characters(pygame.sprite.Sprite):
             self.animation_list.append(temp_list)
 
         self.image = self.animation_list[self.action][self.frame_index]
-        self.rect = self.image.get_rect()
+        self.width = 70
+        self.height = 94
+        self.rect = pygame.Rect(0,0, self.width, self.height)
         self.rect.center = (x,y)
+        
+        
 
 
     def update(self):
@@ -155,7 +159,7 @@ class characters(pygame.sprite.Sprite):
         if rebecca.weapon == 'pistol':
             ANIMATION_COOLDOWN = 100
         if rebecca.weapon == 'shotgun':
-            ANIMATION_COOLDOWN = 160
+            ANIMATION_COOLDOWN = 200
         if rebecca.weapon == 'hmg':
             ANIMATION_COOLDOWN = 50
         #update image depending on current frame frame index
@@ -191,7 +195,7 @@ class characters(pygame.sprite.Sprite):
     #method for displaying character in game
     def draw(self):
         screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
-        
+        pygame.draw.rect(screen, (255,255,255), self.rect, 1)
     
 
 #class for projectile
