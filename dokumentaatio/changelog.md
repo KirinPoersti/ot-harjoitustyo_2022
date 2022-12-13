@@ -16,6 +16,6 @@ mutta niitä kyllä siirtän sit loppuvaiheessa omiin tiedostoihin! :D
 ##Viikko 6
 - Bugien korjaus
 - Tällä viikolla en ole hirveästi tehnyt koodin tasolla hirveän määrää töitä, ja se on ollut lähinään peliin tulevien kuvien ja videoiden teko
-
+- Lisätietoja saatte labtoolin komentista
 
 
