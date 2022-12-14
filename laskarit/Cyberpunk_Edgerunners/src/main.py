@@ -25,15 +25,15 @@ terrain = pygame.image.load("Resources/img/terrain.png")
 bullet_img = pygame.image.load("Resources/img/bullets/universal/bullet.png")
 
 #load bgm and sounds:
-pygame.mixer.music.load("Resources/bgm/the rebel way.mp3")
-pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.load("Resources/bgm/the rebel path.mp3")
+pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1, 0.0, 2000)
 pistol_sf = pygame.mixer.Sound("Resources/bgm/pistol_sf.mp3")
-pistol_sf.set_volume(0.3)
+pistol_sf.set_volume(0.5)
 shotgun_sf = pygame.mixer.Sound("Resources/bgm/shotgun_sf.mp3")
-shotgun_sf.set_volume(0.3)
+shotgun_sf.set_volume(0.5)
 hmg_sf = pygame.mixer.Sound("Resources/bgm/hmg_sf.mp3")
-hmg_sf.set_volume(0.3)
+hmg_sf.set_volume(0.5)
 
 #creating background
 def draw_bg():
